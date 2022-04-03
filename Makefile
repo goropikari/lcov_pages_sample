@@ -10,6 +10,9 @@ tools:
 
 .PHONY: coverage
 coverage:
+	# lcov
 	go test -cover ./... -coverprofile=coverage.out
 	bin/gcov2lcov -infile=coverage.out -outfile=coverage.lcov
 	genhtml coverage.lcov -o site
+	# go coverage
+	go tool cover -html=coverage.out -o site/gocoverage.html
